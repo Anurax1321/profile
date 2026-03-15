@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+[data-theme="matrix"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --text-primary: #00ff41;
+  --text-secondary: #00cc33;
+  --accent: #00ff41;
+  --accent-hover: #00cc33;
+  --card-bg: #0d0d0d;
+  --card-border: #1a3a1a;
+  --font-heading: 'Fira Code', 'Share Tech Mono', monospace;
+  --font-body: 'Share Tech Mono', 'Fira Code', monospace;
+  --nav-bg: rgba(10, 10, 10, 0.92);
+  --hero-gradient-start: #0a0a0a;
+  --hero-gradient-end: #0d1a0d;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.8;
+  }
+  94% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.9;
+  }
+  97% {
+    opacity: 1;
+  }
+}
+
+[data-theme="matrix"] .matrix-scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 255, 65, 0.06);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+[data-theme="matrix"] .flicker {
+  animation: flicker 4s infinite;
+}

@@ -1,0 +1,47 @@
+.terminal {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Courier New', 'Fira Code', monospace;
+  color: #00ff41;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  gap: 0;
+}
+
+.prompt {
+  color: #00cc33;
+  margin-right: 0.3em;
+  opacity: 0.8;
+  user-select: none;
+}
+
+.text {
+  display: inline;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.2em;
+  background-color: #00ff41;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+    opacity: 1;
+  }
+}

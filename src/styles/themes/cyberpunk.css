@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+[data-theme="cyberpunk"] {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #101628;
+  --text-primary: #e0e0ff;
+  --text-secondary: #8888aa;
+  --accent: #00f0ff;
+  --accent-hover: #00c8d8;
+  --accent-secondary: #ff00ff;
+  --card-bg: #0f1424;
+  --card-border: #1a2040;
+  --font-heading: 'Orbitron', 'Rajdhani', sans-serif;
+  --font-body: 'Inter', 'Rajdhani', sans-serif;
+  --nav-bg: rgba(10, 14, 26, 0.92);
+  --hero-gradient-start: #0a0e1a;
+  --hero-gradient-end: #101628;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(0, 240, 255, 0.4), 0 0 8px rgba(0, 240, 255, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6), 0 0 16px rgba(0, 240, 255, 0.3),
+      0 0 24px rgba(255, 0, 255, 0.15);
+  }
+}
+
+@keyframes borderSweep {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+[data-theme="cyberpunk"] .neon-pulse {
+  animation: neonPulse 3s ease-in-out infinite;
+}
+
+[data-theme="cyberpunk"] .border-sweep {
+  border-image: linear-gradient(90deg, var(--accent), var(--accent-secondary), var(--accent)) 1;
+  animation: borderSweep 4s linear infinite;
+  background-size: 200% 200%;
+}

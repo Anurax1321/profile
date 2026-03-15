@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=MedievalSharp&display=swap');
+
+[data-theme="got"] {
+  --bg-primary: #1a1008;
+  --bg-secondary: #231810;
+  --text-primary: #e8dcc8;
+  --text-secondary: #b8a88c;
+  --accent: #d4a833;
+  --accent-hover: #c49528;
+  --accent-secondary: #8b0000;
+  --card-bg: #211508;
+  --card-border: #3a2a18;
+  --font-heading: 'Cinzel', 'MedievalSharp', serif;
+  --font-body: 'Crimson Text', Georgia, serif;
+  --nav-bg: rgba(26, 16, 8, 0.94);
+  --hero-gradient-start: #1a1008;
+  --hero-gradient-end: #231810;
+}
+
+@keyframes fireGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(212, 168, 51, 0.2), 0 0 16px rgba(139, 0, 0, 0.1);
+  }
+  25% {
+    box-shadow: 0 0 12px rgba(212, 168, 51, 0.3), 0 0 24px rgba(139, 0, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(212, 168, 51, 0.35), 0 0 32px rgba(139, 0, 0, 0.2);
+  }
+  75% {
+    box-shadow: 0 0 10px rgba(212, 168, 51, 0.25), 0 0 20px rgba(139, 0, 0, 0.12);
+  }
+}
+
+@keyframes emberFloat {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px) scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-40px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+[data-theme="got"] .fire-glow {
+  animation: fireGlow 4s ease-in-out infinite;
+}
+
+[data-theme="got"] .ember-float {
+  animation: emberFloat 3s ease-out infinite;
+}

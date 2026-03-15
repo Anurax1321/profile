@@ -1,0 +1,19 @@
+.about {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary, #a1a1aa);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .text {
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: left;
+  }
+}

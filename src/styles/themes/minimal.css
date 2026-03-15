@@ -1,0 +1,15 @@
+[data-theme="minimal"] {
+  --bg-primary: #fafafa;
+  --bg-secondary: #f0f0f0;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a68;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --hero-gradient-start: #f0f4ff;
+  --hero-gradient-end: #fafafa;
+}
