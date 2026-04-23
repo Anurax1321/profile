@@ -7,6 +7,12 @@ export default defineConfig({
   server: {
     port: 8889,
     allowedHosts: ['chinnaboina.com'],
+    // Project lives on /mnt/d (Windows filesystem via WSL); inotify doesn't
+    // fire for Windows-side writes, so HMR needs polling to pick up changes.
+    watch: {
+      usePolling: true,
+      interval: 300,
+    },
   },
   preview: {
     port: 8889,

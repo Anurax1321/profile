@@ -1,11 +1,25 @@
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 3rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary, #a1a1aa);
+  opacity: 0.8;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .background {
@@ -20,86 +34,191 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.1rem;
   text-align: center;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 680px;
 }
 
 .photoWrapper {
-  width: 160px;
-  height: 160px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--accent, #6366f1);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-  margin-bottom: 0.5rem;
+  margin: 0 auto 0.5rem;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+/* Soft ambient halo behind the photo; bleeds the white studio bg into the page. */
+.photoWrapper::before {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent, #6366f1) 35%, transparent) 0%,
+    color-mix(in srgb, var(--accent, #6366f1) 8%, transparent) 45%,
+    transparent 72%
+  );
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Slowly rotating conic-gradient ring; subtle futuristic scanner feel. */
+.photoWrapper::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--accent, #6366f1) 70deg,
+    transparent 140deg,
+    transparent 220deg,
+    color-mix(in srgb, var(--accent, #6366f1) 60%, transparent) 290deg,
+    transparent 360deg
+  );
+  -webkit-mask: radial-gradient(circle, transparent 62%, #000 64%);
+          mask: radial-gradient(circle, transparent 62%, #000 64%);
+  animation: photoRingSpin 12s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes photoRingSpin {
+  to { transform: rotate(360deg); }
 }
 
 .photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
+  /* Fade the outer rim so the white studio background dissolves into the halo
+     instead of showing a hard disc edge on the dark cyberpunk backdrop. */
+  -webkit-mask-image: radial-gradient(circle at center, #000 58%, transparent 96%);
+          mask-image: radial-gradient(circle at center, #000 58%, transparent 96%);
+  filter: contrast(1.05) saturate(1.08);
 }
 
 .name {
-  font-size: 3.5rem;
+  font-size: 3.25rem;
   font-weight: 800;
   color: var(--text-primary, #fff);
   letter-spacing: -0.03em;
   line-height: 1.1;
+  margin: 0;
 }
 
 .tagline {
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--accent, #6366f1);
   letter-spacing: -0.01em;
+  margin: 0;
 }
 
-.subtitle {
-  font-size: 1.05rem;
+.pitch {
+  font-size: 1.02rem;
   color: var(--text-secondary, #a1a1aa);
   font-weight: 400;
+  line-height: 1.5;
+  max-width: 620px;
+  margin: 0;
+}
+
+.roleTabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.roleTab {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.rolePrimary {
+  font-size: 0.95rem;
+  color: var(--text-primary, #fff);
+  border: 1.5px solid var(--accent, #6366f1);
+}
+
+.roleSecondary {
+  font-size: 0.82rem;
+  color: var(--text-secondary, #a1a1aa);
+  border: 1px solid var(--card-border, rgba(255, 255, 255, 0.15));
+  padding: 0.4rem 0.85rem;
+}
+
+.roleTab:hover {
+  transform: translateY(-1px);
+}
+
+.roleActive {
+  background: var(--accent, #6366f1);
+  color: var(--bg-primary, #0a0a0a);
+  border-color: var(--accent, #6366f1);
+}
+
+.roleHook {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary, #ffffff);
+  letter-spacing: 0.005em;
+  line-height: 1.4;
+  min-height: 1.4em;
+  margin: 0.25rem 0;
+  max-width: 640px;
+  text-shadow:
+    0 0 12px color-mix(in srgb, var(--accent, #6366f1) 55%, transparent),
+    0 0 28px color-mix(in srgb, var(--accent, #6366f1) 25%, transparent);
+}
+
+@media (max-width: 768px) {
+  .roleHook {
+    font-size: 1.05rem;
+  }
 }
 
 .ctaButtons {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.ctaPrimary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  background: var(--accent, #6366f1);
-  color: var(--bg-primary, #0a0a0a);
-  border: none;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.ctaPrimary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
+  margin-top: 0.25rem;
 }
 
 .ctaSecondary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
+  padding: 0.7rem 1.5rem;
   background: transparent;
   color: var(--accent, #6366f1);
   border: 2px solid var(--accent, #6366f1);
   border-radius: 8px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
@@ -107,7 +226,7 @@
 }
 
 .ctaSecondary:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(99, 102, 241, 0.1);
   transform: translateY(-1px);
 }
 
@@ -122,41 +241,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: var(--bg-secondary, rgba(255, 255, 255, 0.05));
-  border: 1px solid var(--card-border, rgba(255, 255, 255, 0.08));
-  color: var(--text-secondary, #a1a1aa);
-  font-size: 1.1rem;
+  background: color-mix(in srgb, var(--accent, #6366f1) 12%, transparent);
+  border: 1.5px solid var(--accent, #6366f1);
+  color: var(--accent, #6366f1);
+  font-size: 1.15rem;
   text-decoration: none;
-  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent, #6366f1) 30%, transparent);
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .socialLink:hover {
-  color: var(--accent, #6366f1);
-  border-color: var(--accent, #6366f1);
+  color: var(--bg-primary, #0a0e1a);
+  background: var(--accent, #6366f1);
   transform: translateY(-2px);
-}
-
-.scrollIndicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--text-secondary, #a1a1aa);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.arrow {
-  font-size: 1.25rem;
+  box-shadow: 0 0 22px color-mix(in srgb, var(--accent, #6366f1) 55%, transparent);
 }
 
 @media (max-width: 768px) {
@@ -165,16 +266,16 @@
   }
 
   .tagline {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
-  .subtitle {
+  .pitch {
     font-size: 0.95rem;
   }
 
   .photoWrapper {
-    width: 120px;
-    height: 120px;
+    width: 170px;
+    height: 170px;
   }
 
   .ctaButtons {

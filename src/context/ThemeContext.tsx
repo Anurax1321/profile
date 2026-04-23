@@ -11,12 +11,14 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 const STORAGE_KEY = 'portfolio-theme';
 
 function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'minimal';
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === 'minimal' || stored === 'matrix' || stored === 'cyberpunk' || stored === 'got') {
-    return stored;
-  }
-  return 'minimal';
+  // Locked to cyberpunk while we perfect it. Restore multi-theme logic when re-enabling others.
+  return 'cyberpunk';
+  // if (typeof window === 'undefined') return 'minimal';
+  // const stored = localStorage.getItem(STORAGE_KEY);
+  // if (stored === 'minimal' || stored === 'matrix' || stored === 'cyberpunk' || stored === 'got') {
+  //   return stored;
+  // }
+  // return 'minimal';
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {

@@ -1,0 +1,27 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.ring {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent, #6366f1);
+  box-shadow: 0 0 28px var(--accent, #6366f1), inset 0 0 10px rgba(0, 240, 255, 0.08);
+  filter: blur(0.4px);
+  will-change: transform, opacity;
+}
+
+@media (max-width: 768px) {
+  .ring {
+    width: 150px;
+    height: 150px;
+  }
+}

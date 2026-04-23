@@ -1,24 +1,28 @@
 import { ThemeProvider } from './context/ThemeContext';
-import Navbar from './components/Layout/Navbar';
-import Footer from './components/Layout/Footer';
-import SectionWrapper from './components/Layout/SectionWrapper';
+// Navbar hidden while we polish the landing. Re-enable when sections return.
+// import Navbar from './components/Layout/Navbar';
+// Footer removed; copyright line now lives inside the Hero.
+// import Footer from './components/Layout/Footer';
+// import SectionWrapper from './components/Layout/SectionWrapper';
 import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Skills from './components/sections/Skills';
-import Projects from './components/sections/Projects';
-import Experience from './components/sections/Experience';
-import Education from './components/sections/Education';
-import ComingSoon from './components/sections/ComingSoon';
-import Contact from './components/sections/Contact';
+// import About from './components/sections/About';
+// import Skills from './components/sections/Skills';
+// import Projects from './components/sections/Projects';
+// import Experience from './components/sections/Experience';
+// import Education from './components/sections/Education';
+// import ComingSoon from './components/sections/ComingSoon';
+// import Contact from './components/sections/Contact';
 import './index.css';
 
+// Only the Hero (landing) is rendered while we polish it. Re-enable sections below when ready.
 export default function App() {
   return (
     <ThemeProvider>
-      <Navbar />
+      {/* <Navbar /> */}
       <main>
         <Hero />
 
+        {/*
         <SectionWrapper id="about" title="About">
           <About />
         </SectionWrapper>
@@ -56,8 +60,9 @@ export default function App() {
         <SectionWrapper id="contact" title="Contact">
           <Contact />
         </SectionWrapper>
+        */}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </ThemeProvider>
   );
 }

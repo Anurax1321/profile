@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../utils/cn';
-import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
+// ThemeSwitcher hidden while we only have cyberpunk active. Re-import when more themes return.
+// import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
 import styles from './Navbar.module.css';
 
 const NAV_LINKS = [
@@ -69,7 +70,7 @@ export default function Navbar() {
         </div>
 
         <div className={styles.actions}>
-          <ThemeSwitcher />
+          {/* <ThemeSwitcher /> */}
           <button
             className={cn(styles.hamburger, mobileOpen && styles.hamburgerOpen)}
             onClick={() => setMobileOpen((prev) => !prev)}
