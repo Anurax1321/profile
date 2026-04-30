@@ -22,6 +22,49 @@
   pointer-events: none;
 }
 
+/* Top-right Work link. Subtle backdrop blur + thin border so it stays
+   readable against the cyberpunk grid without dominating the hero. */
+.workLink {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-primary, #e0e0ff);
+  text-decoration: none;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent, #00f0ff) 35%, transparent);
+  background: color-mix(in srgb, var(--bg-primary, #0a0e1a) 55%, transparent);
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.workLink:hover,
+.workLink:focus-visible {
+  color: var(--bg-primary, #0a0e1a);
+  background: var(--accent, #00f0ff);
+  border-color: var(--accent, #00f0ff);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.workLink svg {
+  font-size: 0.7rem;
+  transition: transform 0.18s ease;
+}
+
+.workLink:hover svg,
+.workLink:focus-visible svg {
+  transform: translateX(2px);
+}
+
 .background {
   position: absolute;
   inset: 0;
@@ -191,9 +234,6 @@
   min-height: 1.4em;
   margin: 0.25rem 0;
   max-width: 640px;
-  text-shadow:
-    0 0 12px color-mix(in srgb, var(--accent, #6366f1) 55%, transparent),
-    0 0 28px color-mix(in srgb, var(--accent, #6366f1) 25%, transparent);
 }
 
 @media (max-width: 768px) {

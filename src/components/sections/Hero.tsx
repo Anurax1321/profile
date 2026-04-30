@@ -1,10 +1,12 @@
 import React, { Suspense, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaDownload, FaArrowRight } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
 import type { Theme } from '../../utils/constants';
 import photo from '../../assets/photo.jpg';
 import RippleIntro from '../RippleIntro/RippleIntro';
+import { useRoleParam } from '../../hooks/useRoleParam';
 import styles from './Hero.module.css';
 
 const MinimalGradient = React.lazy(() => import('../themed/backgrounds/MinimalGradient'));
@@ -22,7 +24,8 @@ const BACKGROUNDS: Record<Theme, React.LazyExoticComponent<React.ComponentType>>
   got: GoTEmbers,
 };
 
-type RoleId = 'swe' | 'aiml' | 'data' | 'infra';
+// Re-exported from data/projects to keep one source of truth for role ids.
+import type { RoleId } from '../../data/projects';
 
 interface Role {
   id: RoleId;
@@ -108,7 +111,7 @@ export default function Hero() {
   const Background = BACKGROUNDS[theme];
 
   const [introDone, setIntroDone] = useState(false);
-  const [activeRole, setActiveRole] = useState<RoleId>('swe');
+  const { role: activeRole, setRole: setActiveRole } = useRoleParam();
 
   const role = ROLES.find((r) => r.id === activeRole) ?? ROLES[0];
 
@@ -119,6 +122,14 @@ export default function Hero() {
           <Background />
         </Suspense>
       </div>
+
+      <Link
+        to={`/work?role=${activeRole}`}
+        className={styles.workLink}
+        aria-label="Open Work page"
+      >
+        Work <FaArrowRight aria-hidden />
+      </Link>
 
       <AnimatePresence>
         {!introDone && (

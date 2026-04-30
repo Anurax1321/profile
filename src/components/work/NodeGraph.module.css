@@ -1,0 +1,125 @@
+.canvas {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: clamp(420px, 65vh, 720px);
+  /* Receives pointer events so cursor influence works across the whole field. */
+  touch-action: none;
+}
+
+.node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  /* Drift transform lives on this wrapper; cursor push lives on the inner button. */
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  will-change: transform;
+}
+
+.hex {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transition: filter 0.18s ease;
+}
+
+.hexFill {
+  fill: var(--bg-secondary, #101628);
+  transition: fill 0.18s ease;
+}
+
+.hexStroke {
+  fill: none;
+  stroke: color-mix(in srgb, var(--accent, #00f0ff) 55%, var(--card-border, #1a2040));
+  stroke-width: 3;
+  stroke-linejoin: round;
+  transition: stroke 0.18s ease, stroke-width 0.18s ease;
+}
+
+.dimmed {
+  opacity: 0.45;
+}
+
+/* Hover/focus: thicker accent stroke + slightly brighter fill. */
+.inner:hover .hexStroke,
+.inner:focus-visible .hexStroke {
+  stroke: var(--accent, #00f0ff);
+  stroke-width: 4;
+}
+
+.inner:hover .hexFill,
+.inner:focus-visible .hexFill {
+  fill: color-mix(in srgb, var(--bg-secondary, #101628) 80%, var(--accent, #00f0ff));
+}
+
+.inner:focus-visible {
+  outline: 2px solid var(--accent, #00f0ff);
+  outline-offset: 6px;
+  border-radius: 6px;
+}
+
+.initials {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-heading, 'Orbitron', system-ui, sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--accent, #00f0ff) 50%, transparent);
+  pointer-events: none;
+  user-select: none;
+}
+
+.label {
+  position: absolute;
+  bottom: -1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary, #aaaacc);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 0.02em;
+}
+
+.inner:hover .label,
+.inner:focus-visible .label {
+  color: var(--text-primary, #e0e0ff);
+}
+
+@media (max-width: 768px) {
+  .canvas {
+    height: clamp(360px, 60vh, 520px);
+  }
+  .initials {
+    font-size: 1rem;
+  }
+  .label {
+    font-size: 0.72rem;
+  }
+}

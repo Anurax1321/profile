@@ -1,0 +1,100 @@
+.work {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--bg-primary, #0a0e1a);
+  color: var(--text-primary, #e0e0ff);
+  overflow: hidden;
+  padding: 4rem 1.5rem 5rem;
+  box-sizing: border-box;
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary, #8888aa);
+  margin: 0 0 1.25rem;
+}
+
+.tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem;
+  border: 1px solid var(--card-border, #1a2040);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-secondary, #101628) 60%, transparent);
+}
+
+.tab {
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #8888aa);
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease;
+}
+
+.tab:hover,
+.tab:focus-visible {
+  color: var(--text-primary, #e0e0ff);
+  outline: none;
+}
+
+.tabActive {
+  background: var(--accent, #00f0ff);
+  color: var(--bg-primary, #0a0e1a);
+}
+
+.placeholder {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-secondary, #8888aa);
+  font-size: 1rem;
+  border: 1px dashed var(--card-border, #1a2040);
+  border-radius: 12px;
+}
+
+.backLink {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 3;
+  font-size: 0.85rem;
+  color: var(--text-primary, #e0e0ff);
+  text-decoration: none;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--card-border, #1a2040);
+  background: color-mix(in srgb, var(--bg-primary, #0a0e1a) 70%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.backLink:hover {
+  color: var(--accent, #00f0ff);
+  border-color: var(--accent, #00f0ff);
+}

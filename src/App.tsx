@@ -1,68 +1,36 @@
+import { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
-// Navbar hidden while we polish the landing. Re-enable when sections return.
-// import Navbar from './components/Layout/Navbar';
-// Footer removed; copyright line now lives inside the Hero.
-// import Footer from './components/Layout/Footer';
-// import SectionWrapper from './components/Layout/SectionWrapper';
 import Hero from './components/sections/Hero';
-// import About from './components/sections/About';
-// import Skills from './components/sections/Skills';
-// import Projects from './components/sections/Projects';
-// import Experience from './components/sections/Experience';
-// import Education from './components/sections/Education';
-// import ComingSoon from './components/sections/ComingSoon';
-// import Contact from './components/sections/Contact';
 import './index.css';
 
-// Only the Hero (landing) is rendered while we polish it. Re-enable sections below when ready.
+// Lazy-load /work so the landing page bundle stays unchanged.
+const Work = lazy(() => import('./pages/Work'));
+
+function HomePage() {
+  return (
+    <main>
+      <Hero />
+    </main>
+  );
+}
+
 export default function App() {
   return (
     <ThemeProvider>
-      {/* <Navbar /> */}
-      <main>
-        <Hero />
-
-        {/*
-        <SectionWrapper id="about" title="About">
-          <About />
-        </SectionWrapper>
-
-        <SectionWrapper id="skills" title="Skills">
-          <Skills />
-        </SectionWrapper>
-
-        <SectionWrapper id="projects" title="Projects">
-          <Projects />
-        </SectionWrapper>
-
-        <SectionWrapper id="experience" title="Experience">
-          <Experience />
-        </SectionWrapper>
-
-        <SectionWrapper id="education" title="Education">
-          <Education />
-        </SectionWrapper>
-
-        <SectionWrapper id="currently-working-on" title="Currently Working On">
-          <ComingSoon
-            title="Currently Working On"
-            message="Exciting projects in progress. Stay tuned for updates!"
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/work"
+            element={
+              <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
+                <Work />
+              </Suspense>
+            }
           />
-        </SectionWrapper>
-
-        <SectionWrapper id="personal-fun" title="Personal / Fun">
-          <ComingSoon
-            title="Personal / Fun"
-            message="Hobbies, side projects, and things I do for fun -- coming soon."
-          />
-        </SectionWrapper>
-
-        <SectionWrapper id="contact" title="Contact">
-          <Contact />
-        </SectionWrapper>
-        */}
-      </main>
-      {/* <Footer /> */}
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
